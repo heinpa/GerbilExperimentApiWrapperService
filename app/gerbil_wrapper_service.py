@@ -9,15 +9,12 @@ import os
 
 
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
+
 wrapper_service_bp = Blueprint('wrapper_service_bp', __name__, template_folder="templates")
 
 get_experiment_url  = "http://gerbil-qa.aksw.org/gerbil/experiment?id="
-
 upload_folder = "./"
 
-
-## /startexperiment
-#
 
 def allowed_file(filename):
     return True
