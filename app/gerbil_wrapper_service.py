@@ -24,12 +24,9 @@ def allowed_file(filename):
 
 
 def upload_file(file):
-    # TODO: exception if no file 
-#        if file.filename == "":
-#            logging.info("no file selected")
-#            return redirect(request.url)
+    logging.info(f"called UPLOAD_FILE with file {file}")
 
-        if file and allowed_file(file.filename):
+    if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             upload_path = os.path.join(upload_folder, filename)
             file.save(upload_path)
@@ -37,51 +34,61 @@ def upload_file(file):
             return upload_path
 
 
+def delete_saved_files(files):
+    for file in files:
+        filename = files[file]
+        logging.info(f"removed file: {filename}")
+        os.remove(filename)
+
+
 @wrapper_service_bp.route("/startexperiment", methods=['POST'])
 def start_experiment():
 
     saved_files = dict()
 
-    logging.info(f"{request.files}")
+    logging.info(f"files: {request.files}")
 
     # check file parts 
     if 'gold_standard' not in request.files and not('test_results' in request.files or 'live_annotator_name' in request.form):
         logging.info("incomplete")
         return redirect(request.url)
 
-    # -> required
+    # required
     gold_standard_upload = request.files['gold_standard']
-    # -> optional
+    # optional
     test_results_upload = request.files.get('test_results')
 
-    language = request.form["language"]
+    language = request.form["language"] 
 
     upload_path = upload_file(gold_standard_upload)
     saved_files["gold_standard"] = upload_path
 
-    # -> optional 
+    # optional 
     live_annotator_name = request.form.get("live_annotator_name")
     live_annotator_url =  request.form.get("live_annotator_url")
 
     gerbil = None
 
     # setup experiment with local files
+    logging.info("setting up Gerbil experiment ...")
     if test_results_upload:
         upload_path = upload_file(test_results_upload)
         saved_files["test_results"] = upload_path 
         try: 
-            logging.info("setup experiment with local files")
             gerbil = Gerbil(language=language, gold_standard_file=saved_files["gold_standard"], 
                             test_results_file=saved_files["test_results"])
+            logging.info("setup experiment with local files")
+            delete_saved_files(saved_files)
         except:
             # TODO: handle
             pass
     elif live_annotator_url:
         try:
-            logging.info("setup experiment with live annotator")
             gerbil = Gerbil(language=language, gold_standard_file=saved_files["gold_standard"], 
                             live_annotator_name=live_annotator_name, 
                             live_annotator_url=live_annotator_url)
+            logging.info("setup experiment with live annotator")
+            delete_saved_files(saved_files)
         except:
             # TODO: handle
             pass
@@ -90,6 +97,7 @@ def start_experiment():
                         + "Missing results file or live annotator.")
 
     if gerbil: 
+        logging.info(f"experiment created: {gerbil.get_results_url()}")
         return jsonify(gerbil.get_results_url())
     else: 
         return redirect(request.url)
