@@ -1,4 +1,4 @@
-name: Register Docker Image 
+name: Update Docker Image 
 
 on:
   push:
