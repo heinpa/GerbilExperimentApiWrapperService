@@ -1,0 +1,15 @@
+{
+    "services": [
+        {
+            "mode": "dockerfile",
+            "port": "4120:9090",
+            "image": "heinpa/gerbil-wrapper-service",
+            "tag": "latest",
+            "files": {
+                ".env": "gerbil-wrapper-service"
+            }
+        }
+    ],
+    "ids": {
+    }
+}
