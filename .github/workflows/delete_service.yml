@@ -1,0 +1,20 @@
+name: Delete Docker Image 
+
+on: 
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # required to access configuration
+      - uses: actions/checkout@v3
+
+      # init registration 
+      - name: Init Registration
+        uses: MindMaster98/docker-service-updater@v0.1.4
+        with:
+          mode: delete
+          updater_host: ${{ secrets.UPDATER_HOST }}
+          api_key: ${{ secrets.UPDATER_KEY }}
