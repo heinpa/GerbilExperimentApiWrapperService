@@ -54,7 +54,9 @@ class TestService(TestCase):
             # then
             mocked_Gerbil.assert_called_with(language=self.language,
                                              gold_standard_file="./"+self.gold_standard_file,
-                                             test_results_file="./"+self.test_results_file)
+                                             gold_standard_name="GoldStandard",
+                                             test_results_file="./"+self.test_results_file,
+                                             test_results_name="TestResults")
 
 
     def test_start_experiment_with_live_annotator(self):
@@ -77,5 +79,6 @@ class TestService(TestCase):
             # then
             mocked_Gerbil.assert_called_with(language=self.language,
                                              gold_standard_file="./"+self.gold_standard_file,
+                                             gold_standard_name="GoldStandard",
                                              live_annotator_url=self.live_annotator_url,
                                              live_annotator_name=self.live_annotator_name)

@@ -15,6 +15,9 @@ wrapper_service_bp = Blueprint('wrapper_service_bp', __name__, template_folder="
 get_experiment_url  = "http://gerbil-qa.aksw.org/gerbil/experiment?id="
 upload_folder = "./"
 
+gold_standard_name_default = "GoldStandard"
+test_results_name_default = "TestResults"
+
 
 def allowed_file(filename):
     return True
@@ -64,6 +67,9 @@ def start_experiment():
     live_annotator_name = request.form.get("live_annotator_name")
     live_annotator_url =  request.form.get("live_annotator_url")
 
+    gold_standard_name = request.form.get("gold_standard_name", gold_standard_name_default)
+    test_results_name = request.form.get("test_results_name", test_results_name_default)
+
     gerbil = None
 
     # setup experiment with local files
@@ -73,7 +79,9 @@ def start_experiment():
         saved_files["test_results"] = upload_path 
         try: 
             gerbil = Gerbil(language=language, gold_standard_file=saved_files["gold_standard"], 
-                            test_results_file=saved_files["test_results"])
+                            gold_standard_name=gold_standard_name,
+                            test_results_file=saved_files["test_results"],
+                            test_results_name=test_results_name)
             logging.info("setup experiment with local files")
             delete_saved_files(saved_files)
         except:
@@ -82,6 +90,7 @@ def start_experiment():
     elif live_annotator_url:
         try:
             gerbil = Gerbil(language=language, gold_standard_file=saved_files["gold_standard"], 
+                            gold_standard_name=gold_standard_name,
                             live_annotator_name=live_annotator_name, 
                             live_annotator_url=live_annotator_url)
             logging.info("setup experiment with live annotator")
