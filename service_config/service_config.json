@@ -3,14 +3,14 @@
         {
             "mode": "docker",
             "port": "40188:9090",
-            "image": "heinpa/gerbil-api-wrapper-service",
+            "image": "heinpa/gerbil-wrapper-service",
             "tag": "latest",
             "files": {
-                ".env": "gerbil-api-wrapper-service"
+                ".env": "gerbil-wrapper-service"
             }
         }
     ],
     "ids": {
-        "0":"heinpa-gerbil-api-wrapper-service"
+        "0":"heinpa-gerbil-wrapper-service"
     }
 }
