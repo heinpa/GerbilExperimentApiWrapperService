@@ -1,7 +1,7 @@
 {
     "services": [
         {
-            "mode": "dockerfile",
+            "mode": "docker",
             "port": "40188:9090",
             "image": "heinpa/gerbil-wrapper-service",
             "tag": "latest",
