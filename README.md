@@ -1,7 +1,7 @@
 # Gerbil Experiment Api Wrapper Service
 
 This web service aims to automate the generation of benchmark results with Gerbil for QA 
-using [GerbilExperimentApiWrapper](https://pypi.org/project/gerbil-api-wrapper/).
+using GerbilExperimentApiWrapper ([PyPI](https://pypi.org/project/gerbil-api-wrapper/), [GitHub](https://github.com/heinpa/GerbilExperimentApiWrapper)).
 
 Public DockerHub image: https://hub.docker.com/r/heipa/gerbil-wrapper-service
 
