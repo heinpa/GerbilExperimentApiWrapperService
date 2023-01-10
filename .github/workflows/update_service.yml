@@ -2,7 +2,7 @@ name: Update Docker Image
 
 on:
   push:
-    branches: [master]
+    branches: ["main"]
   workflow_dispatch: 
 
 jobs:
@@ -13,8 +13,8 @@ jobs:
       # required to access configuration
       - uses: actions/checkout@v3
 
-      # init registration 
-      - name: Init Registration
+      # init udpate 
+      - name: Init Update
         uses: MindMaster98/docker-service-updater@v0.1.4
         with:
           mode: update
