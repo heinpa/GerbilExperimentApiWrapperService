@@ -38,8 +38,8 @@ Parameters are passed as form-data.
 - `gold_standard_name` -- (optional) The name of the gold standard dataset
 - `test_results_file` -- (optional) The path to a test result dataset to be used *instead* of a live annotator
 - `test_results_name` -- (optional) The name of the test results dataset
-- `live_annotator_name` -- (optional) The name of a live annotator to be used *instead* of local test results; requires a value for 'live_annotator_url'
 - `live_annotator_url` -- (optional) The URL for a live annotator; requires a value for 'live_annotator_name'
+- `live_annotator_name` -- (optional) The name of a live annotator to be used *instead* of local test results; requires a value for 'live_annotator_url'
 
 
 ## Examples
