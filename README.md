@@ -1,19 +1,32 @@
 # Gerbil Experiment Api Wrapper Service
 
-link to pypi
+This web service aims to automate the generation of benchmark results with Gerbil for QA 
+using [GerbilExperimentApiWrapper](https://pypi.org/project/gerbil-api-wrapper/).
+
+Public DockerHub image: https://hub.docker.com/r/heipa/gerbil-wrapper-service
+
+
+## Building and Running the Service
+
+This repository includes a `docker-compose.yml` file for easy deployment using Docker.
+
+Use the 'environment' section to define configuration parameters like the port to be used. 
+
+Build the docker image with `docker-compose build`,
+then start the service with `docker-compose up`
 
 
 ## Endpoints
 
-- `/health`: GET 
-- `/about`: GET
-- `/startexperiment`: POST
-- `/resultjsonld`: GET (with argument)
+- `/health`: GET -- returns "alive" if the service is running
+- `/about`: GET -- returns a short description of the service
+- `/startexperiment`: POST -- starts an experiment with the specified datasets
+- `/resultjsonld`: GET (with argument) -- returns experiment results in JSON-LD format
 
 
 ## Parameters
 
-The web service expects the same parameters as the GerbilWrapperAPI.
+The web service expects the same parameters as the GerbilExperimentApiWrapper.
 Besides the required gold standard dataset you need to specify either 
 a local file with test results **or** 
 a live annotator.
