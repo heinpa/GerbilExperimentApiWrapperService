@@ -15,5 +15,5 @@ def health():
 
 @app.route(aboutendpoint, methods=["GET"])
 def about():
-    return "about"
+    return "Wrapper Service for generating benchmark results using GerbilExperimentApiWrapper"
 

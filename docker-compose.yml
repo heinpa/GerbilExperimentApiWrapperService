@@ -1,0 +1,9 @@
+version: '3'
+services:
+  wrapper:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    network_mode: host
+    environment:
+      - "SERVICE_PORT=8080"

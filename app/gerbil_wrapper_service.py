@@ -109,7 +109,7 @@ def start_experiment():
         return redirect(request.url)
 
 
-wrapper_service_bp.route("/getresultsjsonld", methods=["GET"])
+@wrapper_service_bp.route("/resultjsonld", methods=["GET"])
 def get_experiment_results_as_json_ld():
     args = request.args
     experiment_id = args.get("experimentId", "")
