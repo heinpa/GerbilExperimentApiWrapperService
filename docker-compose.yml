@@ -1,7 +1,7 @@
 version: '3'
 services:
   wrapper:
-    image: gerbil-wrapper-service:latest
+    image: gerbil-api-wrapper-service:latest
     build:
       context: . 
       dockerfile: Dockerfile
