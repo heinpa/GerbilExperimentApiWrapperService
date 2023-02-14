@@ -7,4 +7,4 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     environment:
-      - "SERVICE_PORT=40140"
+      - .env
