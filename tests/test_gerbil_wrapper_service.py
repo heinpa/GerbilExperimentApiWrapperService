@@ -31,11 +31,11 @@ class TestService(TestCase):
 
 
     def tearDown(self):
-        pass 
+        pass
 
-    
+
     def test_start_experiment_with_local_files(self):
-        
+
         data = dict(
             gold_standard = self.gold_standard,
             test_results = self.test_results,
@@ -50,7 +50,7 @@ class TestService(TestCase):
 
             # when 
             client.post("/startexperiment", data=data, content_type="multipart/form-data")
-            
+
             # then
             mocked_Gerbil.assert_called_with(language=self.language,
                                              gold_standard_file="./"+self.gold_standard_file,
@@ -75,7 +75,7 @@ class TestService(TestCase):
 
             # when 
             client.post("/startexperiment", data=data, content_type="multipart/form-data")
-            
+
             # then
             mocked_Gerbil.assert_called_with(language=self.language,
                                              gold_standard_file="./"+self.gold_standard_file,

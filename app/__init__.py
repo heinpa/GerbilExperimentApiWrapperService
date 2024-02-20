@@ -1,5 +1,5 @@
 from app.gerbil_wrapper_service import wrapper_service_bp
-from flask import Flask 
+from flask import Flask
 
 configfile = "app.conf"
 

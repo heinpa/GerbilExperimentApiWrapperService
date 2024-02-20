@@ -52,7 +52,7 @@ curl -X POST \
 -F test_results=@result_test.json \
 -F test_results_name='TestResults' \
 -F language=en  \
-'localhost:8080/startexperiment' \
+'localhost:8088/startexperiment' \
 -H 'Content-Type:multipart/form-data'
 ```
 
@@ -63,7 +63,7 @@ curl -X POST \
 -F live_annotator_url='http://porque.cs.upb.de:40123/qanswer/gerbil' \
 -F live_annotator_name='QAnswer' \
 -F language=en  \
-'localhost:8080/startexperiment' \
+'localhost:8088/startexperiment' \
 -H 'Content-Type:multipart/form-data'
 ```
 
@@ -78,5 +78,5 @@ to retrieve the results in JSON-LD format.
 **Note**: It might take some time for the results to be computed and displayed. 
 
 ```bash
-curl localhost:8080/resultjsonld?experimentId=<experimentId>
+curl localhost:8088/resultjsonld?experimentId=<experimentId>
 ```

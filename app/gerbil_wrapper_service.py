@@ -1,5 +1,5 @@
 import logging
-from flask import Blueprint, jsonify, request, redirect 
+from flask import Blueprint, jsonify, request, redirect
 from gerbil_api_wrapper.gerbil import Gerbil
 from bs4 import BeautifulSoup
 import requests
